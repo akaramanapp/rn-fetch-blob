@@ -229,7 +229,15 @@ public class RNFetchBlobReq extends BroadcastReceiver implements Runnable {
         OkHttpClient.Builder clientBuilder;
 
         try {
-            // use trusty SSL socket
+            clientBuilder = new OkHttpClient.Builder();
+            CertificatePinner certificatePinner = new CertificatePinner.Builder()
+                    .add("mobil.albarakaturk.com.tr", "sha256/feRirDK5Qhf1B2glAc/DJbXwQgmjuPY1Tml4JmFASv0=")
+                    .add("mobil.albarakaturk.com.tr", "sha256/hETpgVvaLC0bvcGG3t0ckj8Hvr4XyP2MTwCiqhgRWwU=")
+                    .add("mobil.albarakaturk.com.tr", "sha256/cGuxAXyFXFkmj91cF4HPWX8S0srS9j0aSqN0k4AP+4A=")
+                    .build();
+            clientBuilder.certificatePinner(certificatePinner);
+            clientBuilder.build();
+            
             if (this.options.trusty) {
                 clientBuilder = RNFetchBlobUtils.getUnsafeOkHttpClient(client);
             } else {

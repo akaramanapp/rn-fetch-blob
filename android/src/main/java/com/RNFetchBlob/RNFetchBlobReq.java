@@ -56,6 +56,7 @@ import java.util.concurrent.TimeUnit;
 import 	javax.net.ssl.SSLSocketFactory;
 
 import okhttp3.Call;
+import okhttp3.CertificatePinner;
 import okhttp3.ConnectionPool;
 import okhttp3.ConnectionSpec;
 import okhttp3.Headers;
